@@ -1,5 +1,5 @@
 [project]
-name = "apple-mail-mcp"
+name = "apple-mail-summary-mcp"
 version = "0.1.0"
 description = "A General MCP Server for interacting with Apple Mail on macOS, with optional academic paper processing tools."
 readme = "README.md"
