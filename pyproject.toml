@@ -1,7 +1,7 @@
 [project]
 name = "apple-mail-mcp"
 version = "0.1.0"
-description = "MCP Server for interacting with Apple Mail and processing academic papers."
+description = "A General MCP Server for interacting with Apple Mail on macOS, with optional academic paper processing tools."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -12,6 +12,9 @@ dependencies = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[project.scripts]
+apple-mail-mcp = "apple_mail_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/apple_mail_mcp"]
