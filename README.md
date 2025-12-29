@@ -29,7 +29,16 @@ tell application "Mail"
 end tell
 ```
 
-### 2. Configuration for Claude Desktop
+### 2. Environment Variables (Optional)
+
+You can set default values for the account and mailbox using environment variables. This allows the AI agent to skip specifying these parameters every time.
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `APPLE_MAIL_SUMMARY_MCP_ACCOUNT` | The name of the default Apple Mail account. | None (Required if not provided via tool) |
+| `APPLE_MAIL_SUMMARY_MCP_MAILBOX` | The name of the default mailbox. | `Inbox` |
+
+### 3. Configuration for Claude Desktop
 
 You can add this server to your `claude_desktop_config.json` in two ways:
 
@@ -45,7 +54,11 @@ This is the easiest way to try it out without manually cloning the repo.
         "--from",
         "git+https://github.com/BillShiyaoZhang/apple-mail-summary-mcp.git", 
         "apple-mail-summary-mcp" 
-      ]
+      ],
+      "env": {
+        "APPLE_MAIL_SUMMARY_MCP_ACCOUNT": "Your Default Account Name",
+        "APPLE_MAIL_SUMMARY_MCP_MAILBOX": "Inbox"
+      }
     }
   }
 }
@@ -99,10 +112,10 @@ python -m apple_mail_summary_mcp.server
 
 ### 4. Available Tools
 
-#### `fetch_emails(account: str, mailbox: str = "Inbox", limit: int = 5)`
+#### `fetch_emails(account: str = None, mailbox: str = None, limit: int = 5)`
 Fetches a list of unread emails from a specific source.
-- **account**: The exact name of the account (e.g., "iCloud", "Exchange", "Personal").
-- **mailbox**: The mailbox name (e.g., "Inbox", "Spam", "Google Scholar").
+- **account**: The exact name of the account (e.g., "iCloud", "Exchange", "Personal"). Defaults to `APPLE_MAIL_SUMMARY_MCP_ACCOUNT` if not provided.
+- **mailbox**: The mailbox name (e.g., "Inbox", "Spam", "Google Scholar"). Defaults to `APPLE_MAIL_SUMMARY_MCP_MAILBOX` (or "Inbox") if not provided.
 - **limit**: Maximum number of emails to retrieve.
 
 #### `extract_scholar_links(html_content: str)`
