@@ -18,8 +18,7 @@ email_client = EmailClient()
 @mcp.tool()
 def fetch_emails(account: str | None = None, mailbox: str | None = None, limit: int = 5) -> str:
     """
-    Fetches the latest unread emails from a specified account and mailbox.
-    Since users normally set the env var, do not send account/mailbox by default.
+    Fetches the latest unread emails from a specified account and mailbox. Since users normally set the env var, do not include the account and mailbox in your first attempt unless user has specifically requested.
     
     Args:
         account: The name of the account in Apple Mail (e.g., "iCloud", "Gmail"). 
