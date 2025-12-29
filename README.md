@@ -1,4 +1,4 @@
-# Apple Mail MCP Server
+# Apple Mail Summary MCP Server
 
 A Model Context Protocol (MCP) server for macOS that allows AI agents to interact with the local **Apple Mail** application. This server enables LLMs to fetch emails from specific accounts and mailboxes, and includes specialized tools for parsing academic paper alerts.
 
@@ -14,24 +14,6 @@ A Model Context Protocol (MCP) server for macOS that allows AI agents to interac
 - **Apple Mail**: Must be set up and running with your email accounts configured.
 - **Python 3.10+**
 - **uv** (recommended for package management) or standard pip.
-
-## Installation
-
-### Using uv (Recommended)
-
-```bash
-git clone https://github.com/yourusername/apple-mail-mcp.git
-cd apple-mail-mcp
-uv pip install -e .
-```
-
-### Using pip
-
-```bash
-git clone https://github.com/yourusername/apple-mail-mcp.git
-cd apple-mail-mcp
-pip install -e .
-```
 
 ## Usage
 
@@ -52,17 +34,17 @@ end tell
 You can add this server to your `claude_desktop_config.json` in two ways:
 
 #### Option A: Running directly from GitHub via `uvx` (No manual install needed)
-This is the easiest way to try it out without manually cloning the generic repo.
+This is the easiest way to try it out without manually cloning the repo.
 
 ```json
 {
   "mcpServers": {
-    "apple-mail": {
+    "apple-mail-summary": {
       "command": "uvx",
       "args": [
         "--from",
-        "git+https://github.com/yourusername/apple-mail-mcp.git", 
-        "apple-mail-mcp" 
+        "git+https://github.com/BillShiyaoZhang/apple-mail-summary-mcp.git", 
+        "apple-mail-summary-mcp" 
       ]
     }
   }
@@ -71,18 +53,36 @@ This is the easiest way to try it out without manually cloning the generic repo.
 
 #### Option B: Running from a Local Clone (Development)
 
-If you have cloned the repository locally and want to make changes:
+If you want to run from a local copy or make changes, first clone the repository and install dependencies:
+
+**Using uv (Recommended)**
+
+```bash
+git clone https://github.com/BillShiyaoZhang/apple-mail-summary-mcp.git
+cd apple-mail-summary-mcp
+uv pip install -e .
+```
+
+**Using pip**
+
+```bash
+git clone https://github.com/BillShiyaoZhang/apple-mail-summary-mcp.git
+cd apple-mail-summary-mcp
+pip install -e .
+```
+
+Then configure your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-    "apple-mail": {
+    "apple-mail-summary": {
       "command": "uv",
       "args": [
         "--directory",
-        "/absolute/path/to/apple-mail-mcp",
+        "/absolute/path/to/apple-mail-summary-mcp",
         "run",
-        "apple-mail-mcp"
+        "apple-mail-summary-mcp"
       ]
     }
   }
@@ -94,7 +94,7 @@ If you have cloned the repository locally and want to make changes:
 ### 3. Running the Server Manually
 You can also run the server directly if needed:
 ```bash
-python -m apple_mail_mcp.server
+python -m apple_mail_summary_mcp.server
 ```
 
 ### 4. Available Tools
@@ -112,9 +112,9 @@ A utility tool to parse the HTML content of a Google Scholar Alert email and ret
 ## Development
 
 Project structure:
-- `src/apple_mail_mcp/email_client.py`: Handles AppleScript communication.
-- `src/apple_mail_mcp/processor.py`: Contains HTML parsing logic (BeautifulSoup).
-- `src/apple_mail_mcp/server.py`: Defines the FastMCP server and tools.
+- `src/apple_mail_summary_mcp/email_client.py`: Handles AppleScript communication.
+- `src/apple_mail_summary_mcp/processor.py`: Contains HTML parsing logic (BeautifulSoup).
+- `src/apple_mail_summary_mcp/server.py`: Defines the FastMCP server and tools.
 
 ## Contributing
 
