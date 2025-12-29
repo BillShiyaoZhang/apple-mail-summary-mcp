@@ -14,7 +14,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.scripts]
-apple-mail-mcp = "apple_mail_mcp.server:main"
+apple-mail-summary-mcp = "apple_mail_summary_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/apple_mail_mcp"]
+packages = ["src/apple_mail_summary_mcp"]
